@@ -1,4 +1,4 @@
-package Frames;
+package GUI.Frames;
 
 // import java.awt.*;
 import java.awt.event.*;
@@ -9,33 +9,29 @@ public class Frame extends JFrame implements ActionListener{
     public static final int HEIGHT = 480;
 
     public Frame () {
-        setUpFrame(WIDTH, HEIGHT, "exit", true);
+        setUpFrame("default title", WIDTH, HEIGHT, "exit", true);
     }
 
     public Frame (String title) {
-        super(title);
-
-        setUpFrame(WIDTH, HEIGHT, "exit", true);
+        setUpFrame(title, WIDTH, HEIGHT, "exit", true);
     }
 
     public Frame (int width, int height) {
-        setUpFrame(width, height, "exit", true);
+        setUpFrame("default title", width, height, "exit", true);
     }
 
     public Frame (String title, int width, int height) {
-        super(title);
-
-        setUpFrame(width, height, "exit", true);
+        setUpFrame(title, width, height, "exit", true);
     }
 
     public Frame (String title, int width, int height, String closeOperation, boolean isResizable) {
-        super(title);
-        setUpFrame(width, height, closeOperation, isResizable);
+        setUpFrame(title, width, height, closeOperation, isResizable);
     }
 
-    public void setUpFrame (int width, int height, String closeOperation, boolean isResizable) {
-        this.setSize(width, height);
-        this.setResizable(isResizable);
+    public void setUpFrame (String title, int width, int height, String closeOperation, boolean isResizable) {
+        setTitle(title);
+        setSize(width, height);
+        setResizable(isResizable);
 
         if (closeOperation == "exit")
             setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -46,10 +42,11 @@ public class Frame extends JFrame implements ActionListener{
         else if (closeOperation == "do_nothing")
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
+        System.out.println("Hello?");
         this.setVisible(true);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed (ActionEvent e) {
     }
 }
