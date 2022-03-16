@@ -1,34 +1,31 @@
 package GUI.Frames;
 
-// import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.LayoutManager;
 
-public class Frame extends JFrame implements ActionListener{
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 480;
-
-    public Frame () {
-        setUpFrame("default title", WIDTH, HEIGHT, "exit", true);
-    }
+public class Frame extends JFrame implements ActionListener {
+    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 720;
 
     public Frame (String title) {
-        setUpFrame(title, WIDTH, HEIGHT, "exit", true);
+        setUpFrame(title, WIDTH, HEIGHT, "exit", false, null);
     }
 
-    public Frame (int width, int height) {
-        setUpFrame("default title", width, height, "exit", true);
+    public Frame (String title, LayoutManager layout) {
+        setUpFrame(title, WIDTH, HEIGHT, "exit", false, layout);
     }
 
     public Frame (String title, int width, int height) {
-        setUpFrame(title, width, height, "exit", true);
+        setUpFrame(title, width, height, "exit", false, null);
     }
 
     public Frame (String title, int width, int height, String closeOperation, boolean isResizable) {
-        setUpFrame(title, width, height, closeOperation, isResizable);
+        setUpFrame(title, width, height, closeOperation, isResizable, null);
     }
 
-    public void setUpFrame (String title, int width, int height, String closeOperation, boolean isResizable) {
+    public void setUpFrame (String title, int width, int height, String closeOperation, boolean isResizable, LayoutManager layout) {
+        setLayout(layout);
         setTitle(title);
         setSize(width, height);
         setResizable(isResizable);
@@ -42,11 +39,22 @@ public class Frame extends JFrame implements ActionListener{
         else if (closeOperation == "do_nothing")
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-        System.out.println("Hello?");
         this.setVisible(true);
     }
 
     @Override
     public void actionPerformed (ActionEvent e) {
+    }
+
+    public void refresh() {
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }
+
+    public void clear() {
+        this.getContentPane().removeAll();
+        this.revalidate();
+        this.repaint();
     }
 }

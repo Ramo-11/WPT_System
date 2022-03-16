@@ -1,45 +1,42 @@
 package GUI.Frames;
 
-import GUI.Buttons.Button;
+import GUI.Labels.Label;
+import GUI.Panels.*;
+
 import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.LayoutManager;
+
 
 public class MainFrame extends Frame {
-    Button b;
-    
-    public MainFrame () {
-        setUpFrame("default title", WIDTH, HEIGHT, "exit", true);
-
-        b = new Button("select power source");
-    }
 
     public MainFrame (String title) {
-        setUpFrame(title, WIDTH, HEIGHT, "exit", true);
-
-        b = new Button("select power source");
-        addButtonToFrame(b);
-    }
-
-    public MainFrame (int width, int height) {
-        setUpFrame("default title", width, height, "exit", true);
-    }
-
-    public MainFrame (String title, int width, int height) {
         super(title);
-
-        setUpFrame(title, width, height, "exit", true);
     }
 
-    public MainFrame (String title, int width, int height, String closeOperation, boolean isResizable) {
-        setUpFrame(title, width, height, closeOperation, isResizable);
+    public MainFrame (String title, LayoutManager layout) {
+        super(title, layout);
+
+        createTopPanel();
     }
 
-    public void addButtonToFrame(Button b) {
-        b.addActionListener(this);
-        this.add(b);
+    public void createTopPanel() {
+        Panel p = new Panel(null);
 
-        this.invalidate();
-        this.validate();
-        this.repaint();
+        p.setBounds(0, 0, WIDTH, 100);
+        p.setBackground(Color.DARK_GRAY);
+        Label newLabel = new Label("choose a power source", (WIDTH/2 - 100), 20);
+        newLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+        newLabel.setForeground(Color.WHITE);
+        p.addLabel(newLabel);
+        addPanel(p);
+    }
+
+    public void addPanel(Panel p) {
+        this.add(p);
+
+        refresh();
     }
 
     @Override

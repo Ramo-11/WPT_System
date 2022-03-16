@@ -2,6 +2,6 @@ import GUI.Frames.*;
 
 public class Main {
     public static void main (String[] args) {
-        new MainFrame("Main Frame");
+        new MainFrame("Main Frame", null);
     }
 }
