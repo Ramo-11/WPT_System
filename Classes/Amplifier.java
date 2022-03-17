@@ -1,5 +1,7 @@
 package Classes;
 
+import javax.swing.ImageIcon;
+
 public class Amplifier extends Component {
     int gain;
 
@@ -15,10 +17,11 @@ public class Amplifier extends Component {
         gain = 0;
     }
 
-    public Amplifier (String name, int gain) {
+    public Amplifier (String name, int gain, String fileName) {
         super(name);
 
         this.gain = gain;
+        this.image = new ImageIcon(fileName);
     }
 
     public void setGain (int gain) {

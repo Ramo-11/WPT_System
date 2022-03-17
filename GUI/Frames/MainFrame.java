@@ -1,10 +1,11 @@
 package GUI.Frames;
 
+// import GUI.Buttons.*;
 import GUI.Labels.Label;
 import GUI.Panels.*;
 
 import java.awt.event.*;
-
+// import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.LayoutManager;
 import java.awt.FlowLayout;
@@ -12,6 +13,12 @@ import java.awt.Font;
 
 
 public class MainFrame extends Frame {
+
+    Panel topPanel;
+    PowerSourcePanel powerSourcesPanel;
+    SignalGeneratorPanel signalGeneratorsPanel;
+    AmplifierPanel amplifiersPanel;
+    TransmitterPanel transmittersPanel;
 
     public MainFrame (String title) {
         super(title);
@@ -24,11 +31,11 @@ public class MainFrame extends Frame {
     }
 
     public void createPanels() {
-        Panel topPanel = new Panel(null);
-        PowerSourcePanel powerSourcesPanel = new PowerSourcePanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
-        SignalGeneratorPanel signalGeneratorsPanel = new SignalGeneratorPanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
-        AmplifierPanel amplifiersPanel = new AmplifierPanel(new FlowLayout(FlowLayout.CENTER, 0, 30));
-        TransmitterPanel transmittersPanel = new TransmitterPanel(new FlowLayout(FlowLayout.CENTER, 0, 30));
+        topPanel = new Panel(null);
+        powerSourcesPanel = new PowerSourcePanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
+        signalGeneratorsPanel = new SignalGeneratorPanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
+        amplifiersPanel = new AmplifierPanel(new FlowLayout(FlowLayout.CENTER, 0, 30));
+        transmittersPanel = new TransmitterPanel(new FlowLayout(FlowLayout.CENTER, 0, 30));
 
         topPanel.setBounds(0, 0, WIDTH, 100);
         powerSourcesPanel.setBounds(10, 200, 130, HEIGHT - 500);
@@ -78,8 +85,8 @@ public class MainFrame extends Frame {
 
         refresh();
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("ok");
     }
 }

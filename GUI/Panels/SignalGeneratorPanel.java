@@ -29,7 +29,7 @@ public class SignalGeneratorPanel extends Panel {
         signalGeneratorsButtons = new ArrayList<>();
 
         for(SignalGenerator s : signalGenerators)
-        signalGeneratorsButtons.add(new Button(s.getName()));
+        signalGeneratorsButtons.add(new Button(s));
 
         for(Button b : signalGeneratorsButtons) {
             b.setFont(new Font("Aria", Font.PLAIN, 10));

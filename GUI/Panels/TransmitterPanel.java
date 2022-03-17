@@ -22,16 +22,16 @@ public class TransmitterPanel extends Panel {
     public void createAllPowerSources () {
         transmitters = new ArrayList<>();
 
-        transmitters.add(new Transmitter("patch element", 6));
-        transmitters.add(new Transmitter("patch array", 20));
-        transmitters.add(new Transmitter("horn antenna", 15));
+        transmitters.add(new Transmitter("patch element", 6, "Images/patch_element"));
+        // transmitters.add(new Transmitter("patch array", 20));
+        // transmitters.add(new Transmitter("horn antenna", 15));
     }
 
     public void createPowerSourceButtons () {
         transmittersButtons = new ArrayList<>();
 
         for(Transmitter a : transmitters)
-        transmittersButtons.add(new Button(a.getName()));
+        transmittersButtons.add(new Button(a));
 
         for(Button b : transmittersButtons) {
             b.setFont(new Font("Aria", Font.PLAIN, 10));

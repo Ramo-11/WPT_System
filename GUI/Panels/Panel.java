@@ -3,13 +3,18 @@ package GUI.Panels;
 import GUI.Buttons.*;
 import GUI.Labels.*;
 
+import java.util.*;
 import java.awt.event.*;
 import javax.swing.JPanel;
 import java.awt.LayoutManager;
 
 public class Panel extends JPanel implements ActionListener {
+    ArrayList<Button> buttons;
+
     public Panel(LayoutManager layout) {
         super(layout);
+
+        buttons = new ArrayList<>();
     }
 
     public void addButton(Button b) {
@@ -22,8 +27,10 @@ public class Panel extends JPanel implements ActionListener {
         this.add(label);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public ArrayList<Button> getButtons () {
+        return this.buttons;
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) { }
 }

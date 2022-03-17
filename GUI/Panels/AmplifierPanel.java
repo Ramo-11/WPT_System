@@ -15,22 +15,22 @@ public class AmplifierPanel extends Panel {
     public AmplifierPanel(LayoutManager layout) {
         super(layout);
 
-        createAllPowerSources();
-        createPowerSourceButtons();
+        createAllAmplifiers();
+        createAmplifierButtons();
     }
     
-    public void createAllPowerSources () {
+    public void createAllAmplifiers () {
         amplifiers = new ArrayList<>();
 
-        amplifiers.add(new Amplifier("z22", 20));
-        amplifiers.add(new Amplifier("German", 40));
+        amplifiers.add(new Amplifier("z22", 20, "Images/amplifier.jpg"));
+        //amplifiers.add(new Amplifier("German", 40));
     }
 
-    public void createPowerSourceButtons () {
+    public void createAmplifierButtons () {
         amplifiersButtons = new ArrayList<>();
 
         for(Amplifier a : amplifiers)
-        amplifiersButtons.add(new Button(a.getName()));
+        amplifiersButtons.add(new Button(a));
 
         for(Button b : amplifiersButtons) {
             b.setFont(new Font("Aria", Font.PLAIN, 10));

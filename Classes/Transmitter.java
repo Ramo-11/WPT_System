@@ -11,7 +11,7 @@ public class Transmitter extends Amplifier {
         super(name);
     }
 
-    public Transmitter(String name, int gain) {
-        super(name, gain);
+    public Transmitter(String name, int gain, String fileName) {
+        super(name, gain, fileName);
     }
 }

@@ -1,38 +1,43 @@
 package GUI.Buttons;
 
+import Classes.Component;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Dimension;
 
 public class Button extends JButton {
-    public Button () {
-        ImageIcon defaultIcon = new ImageIcon("GUI/Images/defaultButtonIcon.png");
-        Color defaultColor = new Color(255, 255, 255); // White
+    ImageIcon image;
+    Color color;
 
-        setUpButton("default text", defaultIcon, 120, 20, defaultColor);
+    public Button (Component c) {
+        image = new ImageIcon("GUI/Images/defaultButtonIcon.png");
+        color = new Color(255, 255, 255); // White
+
+        setUpButton(c.getName(), 120, 20);
     }
 
-    public Button (String text) {
-        ImageIcon defaultIcon = new ImageIcon("GUI/Images/defaultButtonIcon.png");
-        Color defaultColor = new Color(255, 255, 255); // White
+    public Button (Component c, ImageIcon image) {
+        this.image = image;
+        color = new Color(255, 255, 255);
 
-        setUpButton(text, defaultIcon, 120, 20, defaultColor);
+        setUpButton(c.getName(), 120, 20);;
     }
 
-    public Button (String text, int width, int height) {
-        ImageIcon defaultIcon = new ImageIcon("GUI/Images/defaultButtonIcon.png");
-        Color defaultColor = new Color(255, 255, 255); // White
+    public Button (Component c, int width, int height) {
+        image = new ImageIcon("GUI/Images/defaultButtonIcon.png");
+        color = new Color(255, 255, 255);
 
-        setUpButton(text, defaultIcon, width, height, defaultColor);
+        setUpButton(c.getName(), width, height);
     }
 
-    public void setUpButton (String text, ImageIcon icon, int width, int height, Color c) {
+    public void setUpButton (String text, int width, int height) {
         this.setText(text);
         this.setPreferredSize(new Dimension(width, height));
         this.setFocusable(false);
-        this.setForeground(c);
-        this.setIcon(icon);
+        this.setForeground(color);
+        this.setIcon(image);
         this.setForeground(Color.BLACK);
     }
 }
