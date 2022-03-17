@@ -5,10 +5,14 @@ public class Amplifier extends Component {
 
     public Amplifier () {
         super();
+
+        gain = 0;
     }
 
     public Amplifier (String name) {
         super(name);
+
+        gain = 0;
     }
 
     public Amplifier (String name, int gain) {
@@ -23,5 +27,11 @@ public class Amplifier extends Component {
 
     public int getGain () {
         return this.gain;
+    }
+
+    public double calculatePowerOutput (double powerIn) {
+        double powerOut = powerIn * Math.pow(10, (gain/10));
+
+        return powerOut;
     }
 }

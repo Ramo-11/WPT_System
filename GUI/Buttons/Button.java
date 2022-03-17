@@ -8,21 +8,21 @@ import java.awt.Dimension;
 public class Button extends JButton {
     public Button () {
         ImageIcon defaultIcon = new ImageIcon("GUI/Images/defaultButtonIcon.png");
-        Color defaultColor = new Color(64, 64, 64); // darkGray
+        Color defaultColor = new Color(255, 255, 255); // White
 
-        setUpButton("default text", defaultIcon, 50, 50, defaultColor);
+        setUpButton("default text", defaultIcon, 120, 20, defaultColor);
     }
 
     public Button (String text) {
         ImageIcon defaultIcon = new ImageIcon("GUI/Images/defaultButtonIcon.png");
-        Color defaultColor = new Color(64, 64, 64); // darkGray
+        Color defaultColor = new Color(255, 255, 255); // White
 
-        setUpButton(text, defaultIcon, 50, 50, defaultColor);
+        setUpButton(text, defaultIcon, 120, 20, defaultColor);
     }
 
     public Button (String text, int width, int height) {
         ImageIcon defaultIcon = new ImageIcon("GUI/Images/defaultButtonIcon.png");
-        Color defaultColor = new Color(64, 64, 64); // darkGray
+        Color defaultColor = new Color(255, 255, 255); // White
 
         setUpButton(text, defaultIcon, width, height, defaultColor);
     }
@@ -33,5 +33,6 @@ public class Button extends JButton {
         this.setFocusable(false);
         this.setForeground(c);
         this.setIcon(icon);
+        this.setForeground(Color.BLACK);
     }
 }
