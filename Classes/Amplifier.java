@@ -5,12 +5,6 @@ import javax.swing.ImageIcon;
 public class Amplifier extends Component {
     int gain;
 
-    public Amplifier () {
-        super();
-
-        gain = 0;
-    }
-
     public Amplifier (String name) {
         super(name);
 
@@ -30,6 +24,12 @@ public class Amplifier extends Component {
 
     public int getGain () {
         return this.gain;
+    }
+
+    public void deepCopyAmplifier (Amplifier toCopy) {
+        this.name = toCopy.getName();
+        this.gain = toCopy.getGain();
+        this.image = toCopy.getImage();
     }
 
     public double calculatePowerOutput (double powerIn) {

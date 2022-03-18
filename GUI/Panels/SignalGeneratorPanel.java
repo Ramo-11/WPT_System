@@ -16,13 +16,14 @@ public class SignalGeneratorPanel extends Panel {
 
         createAllSignalGenerators();
         createSignalGeneratorButtons();
+        addActionListenerToButtons();
     }
     
     public void createAllSignalGenerators () {
         signalGenerators = new ArrayList<>();
 
-        signalGenerators.add(new SignalGenerator("magnetron"));
-        signalGenerators.add(new SignalGenerator("TPI-1001-B"));
+        signalGenerators.add(new SignalGenerator("magnetron", 1100, "Images/magnetron.jpg"));
+        signalGenerators.add(new SignalGenerator("TPI-1001-B", 0.01, "Images/TPI.jpg"));
     }
 
     public void createSignalGeneratorButtons () {

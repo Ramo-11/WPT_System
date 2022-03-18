@@ -15,19 +15,20 @@ public class TransmitterPanel extends Panel {
     public TransmitterPanel(LayoutManager layout) {
         super(layout);
 
-        createAllPowerSources();
-        createPowerSourceButtons();
+        createAllTransmitters();
+        createTransmitterButtons();
+        addActionListenerToButtons();
     }
     
-    public void createAllPowerSources () {
+    public void createAllTransmitters () {
         transmitters = new ArrayList<>();
 
-        transmitters.add(new Transmitter("patch element", 6, "Images/patch_element"));
-        // transmitters.add(new Transmitter("patch array", 20));
-        // transmitters.add(new Transmitter("horn antenna", 15));
+        transmitters.add(new Transmitter("patch element", 6, "Images/patch_element.png"));
+        transmitters.add(new Transmitter("patch array", 20, "Images/patch_array.png"));
+        transmitters.add(new Transmitter("horn antenna", 15, "Images/horn.png"));
     }
 
-    public void createPowerSourceButtons () {
+    public void createTransmitterButtons () {
         transmittersButtons = new ArrayList<>();
 
         for(Transmitter a : transmitters)

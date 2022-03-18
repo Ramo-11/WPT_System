@@ -6,11 +6,6 @@ public class Component {
     String name;
     ImageIcon image;
 
-    public Component () {
-        name = "default";
-        image = new ImageIcon("Images/default.jpg");
-    }
-
     public Component (String name) {
         this.name = name;
 
@@ -30,11 +25,16 @@ public class Component {
         return this.name;
    }
 
-    public void setImageFileName (String fileName) {
-        image = new ImageIcon(fileName);
+    public void setImage (ImageIcon image) {
+        this.image = image;
     }
 
    public ImageIcon getImage () {
        return this.image;
    }
+
+    public void deepCopyComponent (Component toCopy) {
+        this.name = toCopy.getName();
+        this.image = toCopy.getImage();
+    }
 }

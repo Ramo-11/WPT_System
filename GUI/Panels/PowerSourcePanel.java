@@ -40,12 +40,6 @@ public class PowerSourcePanel extends Panel {
         }
     }
 
-    public void addActionListenerToButtons () {
-        for (Button b : buttons) {
-            b.addActionListener(this);
-        }
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         try {

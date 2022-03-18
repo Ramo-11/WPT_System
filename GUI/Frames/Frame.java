@@ -16,14 +16,6 @@ public class Frame extends JFrame implements ActionListener {
         setUpFrame(title, WIDTH, HEIGHT, "exit", false, layout);
     }
 
-    public Frame (String title, int width, int height) {
-        setUpFrame(title, width, height, "exit", false, null);
-    }
-
-    public Frame (String title, int width, int height, String closeOperation, boolean isResizable) {
-        setUpFrame(title, width, height, closeOperation, isResizable, null);
-    }
-
     public void setUpFrame (String title, int width, int height, String closeOperation, boolean isResizable, LayoutManager layout) {
         setLayout(layout);
         setTitle(title);

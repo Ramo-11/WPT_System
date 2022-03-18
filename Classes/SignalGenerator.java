@@ -1,22 +1,30 @@
 package Classes;
 
-public class SignalGenerator extends PowerSource {
+public class SignalGenerator extends Component {
     public static final double FREQUENCY = 2.45;
-
-    public SignalGenerator () {
-        super();
-    }
+    double power;
 
     public SignalGenerator (String name) {
         super(name);
+        power = 0.0;
     }
 
-    public SignalGenerator (double power) {
-        super(power);
-    }
-    
     public SignalGenerator (String name, double power) {
-        super(name, power);
+        super(name);
+        this.power = power;
+    }
+
+    public SignalGenerator (String name, double power, String fileName) {
+        super(name, fileName);
+        this.power = power;
+    }
+
+    public void setPower (double power) {
+        this.power = power;
+    }
+
+    public double getPower () {
+        return this.power;
     }
 
     public double getFrequency () {

@@ -1,5 +1,6 @@
 package GUI.Labels;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class Label extends JLabel {
@@ -9,6 +10,12 @@ public class Label extends JLabel {
 
     public Label (String text) {
         setUpLabel(text, 0, 0, 300, 40);
+    }
+
+    public Label (ImageIcon image) {
+        super(image);
+
+        setUpLabel("default text", 0, 0, 300, 40);
     }
 
     public Label (String text, int x, int y) {

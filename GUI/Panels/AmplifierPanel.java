@@ -2,21 +2,24 @@ package GUI.Panels;
 
 import Classes.*;
 import GUI.Buttons.Button;
+// import GUI.Labels.Label;
 
 import java.util.*;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 public class AmplifierPanel extends Panel {
 
     ArrayList<Amplifier> amplifiers;
-    ArrayList<Button> amplifiersButtons;
 
     public AmplifierPanel(LayoutManager layout) {
         super(layout);
-
+        
         createAllAmplifiers();
         createAmplifierButtons();
+        addActionListenerToButtons();
     }
     
     public void createAllAmplifiers () {
@@ -27,14 +30,24 @@ public class AmplifierPanel extends Panel {
     }
 
     public void createAmplifierButtons () {
-        amplifiersButtons = new ArrayList<>();
-
         for(Amplifier a : amplifiers)
-        amplifiersButtons.add(new Button(a));
+            buttons.add(new Button(a));
 
-        for(Button b : amplifiersButtons) {
+        for(Button b : buttons) {
             b.setFont(new Font("Aria", Font.PLAIN, 10));
             this.add(b);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            for (Button amp : buttons) {
+                if (e.getSource() == amp) {
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
