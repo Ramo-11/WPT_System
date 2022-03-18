@@ -8,6 +8,7 @@ import java.util.*;
 import java.awt.event.*;
 import javax.swing.JPanel;
 import java.awt.LayoutManager;
+import java.awt.Color;
 
 public class Panel extends JPanel implements ActionListener {
     ArrayList<Button> buttons;
@@ -16,7 +17,7 @@ public class Panel extends JPanel implements ActionListener {
 
     public Panel(LayoutManager layout) {
         super(layout);
-
+        setBackground(new Color(108, 110, 112));
         selectedComponent = new Component("none");
         buttons = new ArrayList<>();
     }
@@ -50,6 +51,12 @@ public class Panel extends JPanel implements ActionListener {
 
     public void clearSelected () {
         this.selected = false;
+    }
+
+    public void clearPanel () {
+        removeAll();
+        revalidate();
+        repaint();
     }
 
     @Override

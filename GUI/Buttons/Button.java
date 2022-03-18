@@ -11,12 +11,12 @@ public class Button extends JButton {
     Component component;
 
     public Button (String text) {
-        setUpButton(text, 120, 20);
+        setUpButton(text, 120, 30);
     }
 
     public Button (Component component) {
         this.component = component;
-        setUpButton(component.getName(), 120, 20);
+        setUpButton(component.getName(), 120, 30);
     }
 
     public Button (ImageIcon image) {

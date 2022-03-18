@@ -6,6 +6,7 @@ import GUI.Buttons.Button;
 import java.util.*;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,7 @@ public class PowerSourcePanel extends Panel {
 
     public PowerSourcePanel(LayoutManager layout) {
         super(layout);
-
+        setBackground(new Color(48, 124, 255));
         createAllPowerSources();
         createPowerSourceButtons();
         addActionListenerToButtons();
