@@ -6,11 +6,12 @@ import GUI.Buttons.Button;
 import java.util.*;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 public class TransmitterPanel extends Panel {
 
     ArrayList<Transmitter> transmitters;
-    ArrayList<Button> transmittersButtons;
 
     public TransmitterPanel(LayoutManager layout) {
         super(layout);
@@ -29,14 +30,27 @@ public class TransmitterPanel extends Panel {
     }
 
     public void createTransmitterButtons () {
-        transmittersButtons = new ArrayList<>();
+        buttons = new ArrayList<>();
 
         for(Transmitter a : transmitters)
-        transmittersButtons.add(new Button(a));
+            buttons.add(new Button(a));
 
-        for(Button b : transmittersButtons) {
+        for(Button b : buttons) {
             b.setFont(new Font("Aria", Font.PLAIN, 10));
             this.add(b);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            for (Button button : buttons)
+                if (e.getSource() == button) {
+                    selectedComponent = button.getComponent();
+                    selected = true;
+                }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

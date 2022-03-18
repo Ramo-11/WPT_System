@@ -6,10 +6,11 @@ import GUI.Buttons.Button;
 import java.util.*;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 public class SignalGeneratorPanel extends Panel {
     ArrayList<SignalGenerator> signalGenerators;
-    ArrayList<Button> signalGeneratorsButtons;
 
     public SignalGeneratorPanel(LayoutManager layout) {
         super(layout);
@@ -27,14 +28,27 @@ public class SignalGeneratorPanel extends Panel {
     }
 
     public void createSignalGeneratorButtons () {
-        signalGeneratorsButtons = new ArrayList<>();
+        buttons = new ArrayList<>();
 
         for(SignalGenerator s : signalGenerators)
-        signalGeneratorsButtons.add(new Button(s));
+            buttons.add(new Button(s));
 
-        for(Button b : signalGeneratorsButtons) {
+        for(Button b : buttons) {
             b.setFont(new Font("Aria", Font.PLAIN, 10));
             this.add(b);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            for (Button button : buttons)
+                if (e.getSource() == button) {
+                    selectedComponent = button.getComponent();
+                    selected = true;
+                }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

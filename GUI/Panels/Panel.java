@@ -12,6 +12,7 @@ import java.awt.LayoutManager;
 public class Panel extends JPanel implements ActionListener {
     ArrayList<Button> buttons;
     Component selectedComponent;
+    boolean selected = false;
 
     public Panel(LayoutManager layout) {
         super(layout);
@@ -35,17 +36,23 @@ public class Panel extends JPanel implements ActionListener {
     }
 
     public void addActionListenerToButtons () {
-        for (Button b : buttons) {
+        for (Button b : buttons)
             b.addActionListener(this);
-        }
     }
 
-    public void refresh() {
-        this.invalidate();
-        this.validate();
-        this.repaint();
+    public Component getComponent () {
+        return this.selectedComponent;
+    }
+
+    public boolean isSelected () {
+        return this.selected;
+    }
+
+    public void clearSelected () {
+        this.selected = false;
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) { }
+    public void actionPerformed(ActionEvent e) { 
+    }
 }

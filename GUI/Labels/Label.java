@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 
 public class Label extends JLabel {
     public Label () {
-        setUpLabel("default text", 0, 0, 300, 40);
+        setUpLabel("", 0, 0, 300, 40);
     }
 
     public Label (String text) {
@@ -15,7 +15,7 @@ public class Label extends JLabel {
     public Label (ImageIcon image) {
         super(image);
 
-        setUpLabel("default text", 0, 0, 300, 40);
+        setUpLabel("", 0, 0, 300, 40);
     }
 
     public Label (String text, int x, int y) {

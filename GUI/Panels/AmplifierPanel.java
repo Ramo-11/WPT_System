@@ -2,7 +2,6 @@ package GUI.Panels;
 
 import Classes.*;
 import GUI.Buttons.Button;
-// import GUI.Labels.Label;
 
 import java.util.*;
 import java.awt.Font;
@@ -16,7 +15,7 @@ public class AmplifierPanel extends Panel {
 
     public AmplifierPanel(LayoutManager layout) {
         super(layout);
-        
+
         createAllAmplifiers();
         createAmplifierButtons();
         addActionListenerToButtons();
@@ -42,10 +41,11 @@ public class AmplifierPanel extends Panel {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            for (Button amp : buttons) {
-                if (e.getSource() == amp) {
+            for (Button button : buttons)
+                if (e.getSource() == button) {
+                    selectedComponent = button.getComponent();
+                    selected = true;
                 }
-            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);
         }
