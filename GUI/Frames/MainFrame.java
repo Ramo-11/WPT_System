@@ -2,10 +2,9 @@ package GUI.Frames;
 
 import GUI.Labels.Label;
 import GUI.Panels.*;
-// import Classes.*;
 
 import java.awt.event.*;
-// import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.LayoutManager;
 import java.awt.FlowLayout;
@@ -89,32 +88,48 @@ public class MainFrame extends Frame {
         addLabel(transmittersLabel);
     }
 
-    public void clearPanelsSelection () {
-        powerSourcesPanel.clearSelected();
-        signalGeneratorsPanel.clearSelected();
-        amplifiersPanel.clearSelected();
-        transmittersPanel.clearSelected();
+    public void clearSelectionPanel () {
+        selectionPanel.clearPanel();
+        powerSourcesPanel.setNumSelections(0);
+        signalGeneratorsPanel.setNumSelections(0);
+        amplifiersPanel.setNumSelections(0);
+        transmittersPanel.setNumSelections(0);
     }
 
     @Override
     public void actionPerformed (ActionEvent e) {
         if (e.getSource() == helperPanel.getSelectButton()) {
             Label imageLabel = null;
-            if (powerSourcesPanel.isSelected())
+            if (powerSourcesPanel.getNumSelections() == 1) {
                 imageLabel = new Label(powerSourcesPanel.getComponent().getImage());
-            else if (signalGeneratorsPanel.isSelected())
+                powerSourcesPanel.setNumSelections(powerSourcesPanel.getNumSelections() + 1);
+            }
+            else if (signalGeneratorsPanel.getNumSelections() == 1) {
                 imageLabel = new Label(signalGeneratorsPanel.getComponent().getImage());
-            else if (amplifiersPanel.isSelected())
+                signalGeneratorsPanel.setNumSelections(signalGeneratorsPanel.getNumSelections() + 1);
+            }
+            else if (amplifiersPanel.getNumSelections() == 1) {
                 imageLabel = new Label(amplifiersPanel.getComponent().getImage());
-            else if (transmittersPanel.isSelected())
+                amplifiersPanel.setNumSelections(amplifiersPanel.getNumSelections() + 1);
+            }
+            else if (transmittersPanel.getNumSelections() == 1) {
                 imageLabel = new Label(transmittersPanel.getComponent().getImage());
+                transmittersPanel.setNumSelections(transmittersPanel.getNumSelections() + 1);
+            }
             if (imageLabel != null)
                 selectionPanel.add(imageLabel);
-            clearPanelsSelection ();
             refresh();
         }
+        else if (e.getSource() == helperPanel.getSubmitButton()) {
+            if ((powerSourcesPanel.getNumSelections() != 2) || (signalGeneratorsPanel.getNumSelections() != 2) || (amplifiersPanel.getNumSelections() != 2) || (transmittersPanel.getNumSelections() != 2))
+                JOptionPane.showMessageDialog(null, "Fail: Select at least one element from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
+            else {
+                JOptionPane.showMessageDialog(null, "Success: Your selections have been submitted", "Success", JOptionPane.INFORMATION_MESSAGE);
+                clearSelectionPanel();
+            }
+        }
         else if (e.getSource() == helperPanel.getClearButton()) {
-            selectionPanel.clearPanel();
+            clearSelectionPanel();
         }
     }
 }

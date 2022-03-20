@@ -47,7 +47,7 @@ public class PowerSourcePanel extends Panel {
             for (Button button : buttons)
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
-                    selected = true;
+                    numSelections++;
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

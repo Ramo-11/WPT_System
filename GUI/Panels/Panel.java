@@ -13,13 +13,14 @@ import java.awt.Color;
 public class Panel extends JPanel implements ActionListener {
     ArrayList<Button> buttons;
     Component selectedComponent;
-    boolean selected = false;
+    int numSelections;
 
     public Panel(LayoutManager layout) {
         super(layout);
         setBackground(new Color(108, 110, 112));
         selectedComponent = new Component("none");
         buttons = new ArrayList<>();
+        numSelections = 0;
     }
 
     public void addButton(Button b) {
@@ -45,12 +46,12 @@ public class Panel extends JPanel implements ActionListener {
         return this.selectedComponent;
     }
 
-    public boolean isSelected () {
-        return this.selected;
+    public void setNumSelections (int numSelections) {
+        this.numSelections = numSelections;
     }
 
-    public void clearSelected () {
-        this.selected = false;
+    public int getNumSelections () {
+        return this.numSelections;
     }
 
     public void clearPanel () {
