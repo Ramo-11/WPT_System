@@ -3,6 +3,8 @@ package GUI.Frames;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.LayoutManager;
+import GUI.Panels.*;
+import GUI.Labels.*;
 
 public class Frame extends JFrame implements ActionListener {
     public static final int WIDTH = 1280;
@@ -34,8 +36,14 @@ public class Frame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed (ActionEvent e) {
+    public void addPanel (Panel p) {
+        this.add(p);
+        refresh();
+    }
+
+    public void addLabel (Label l) { 
+        this.add(l);
+        refresh();
     }
 
     public void refresh() {
@@ -48,5 +56,9 @@ public class Frame extends JFrame implements ActionListener {
         this.getContentPane().removeAll();
         this.revalidate();
         this.repaint();
+    }
+
+    @Override
+    public void actionPerformed (ActionEvent e) {
     }
 }

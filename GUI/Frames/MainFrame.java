@@ -2,6 +2,7 @@ package GUI.Frames;
 
 import GUI.Labels.Label;
 import GUI.Panels.*;
+import Classes.*;
 
 import java.awt.event.*;
 import javax.swing.JOptionPane;
@@ -12,6 +13,11 @@ import java.awt.Font;
 
 public class MainFrame extends Frame {
 
+    PowerSource selectedPowerSource;
+    SignalGenerator selectedSignalGenerator;
+    Amplifier selectedAmplifier;
+    Transmitter selectedTransmitter;
+
     Panel topPanel;
     PowerSourcePanel powerSourcesPanel;
     SignalGeneratorPanel signalGeneratorsPanel;
@@ -20,12 +26,24 @@ public class MainFrame extends Frame {
     SelectionPanel selectionPanel;
     SelectionPanelHelperPanel helperPanel;
 
+    Panel resultsPanel;
+
     public MainFrame (String title, LayoutManager layout) {
         super(title, layout);
-        createPanels();
+        
+        initializeComponents ();
+        setupLeftPanels();
+        setupRightPanels();
     }
 
-    public void createPanels() {
+    public void initializeComponents () {
+        selectedPowerSource = new PowerSource("");
+        selectedSignalGenerator = new SignalGenerator("");
+        selectedAmplifier = new Amplifier("");
+        selectedTransmitter = new Transmitter("");
+
+        resultsPanel = new Panel(null);
+
         topPanel = new Panel(null);
         selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.LEFT, 10, 20));
         helperPanel = new SelectionPanelHelperPanel(new FlowLayout(FlowLayout.CENTER, 50, 10));
@@ -33,6 +51,9 @@ public class MainFrame extends Frame {
         signalGeneratorsPanel = new SignalGeneratorPanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
         amplifiersPanel = new AmplifierPanel(new FlowLayout(FlowLayout.CENTER, 0, 30));
         transmittersPanel = new TransmitterPanel(new FlowLayout(FlowLayout.CENTER, 0, 30));
+    }
+
+    public void setupLeftPanels () {
 
         topPanel.setBounds(0, 0, WIDTH, 50);
         powerSourcesPanel.setBounds(10, 100, 130, HEIGHT - 500);
@@ -42,7 +63,7 @@ public class MainFrame extends Frame {
         selectionPanel.setBounds(powerSourcesPanel.getX(), powerSourcesPanel.getY() + powerSourcesPanel.getHeight() + 10, 570, HEIGHT - 500);
         helperPanel.setBounds(selectionPanel.getX(), selectionPanel.getY() + selectionPanel.getHeight() + 10, 570, HEIGHT - 670);
 
-        createPanelsTitles();
+        createSetupPanelsTitles();
 
         addPanel(topPanel);
         addPanel(powerSourcesPanel);
@@ -55,14 +76,11 @@ public class MainFrame extends Frame {
         assignListenerToHelpersButtons();
     }
 
-    public void addPanel (Panel p) {
-        this.add(p);
-        refresh();
-    }
+    public void setupRightPanels () {
+        resultsPanel.setBounds(selectionPanel.getX() + selectionPanel.getWidth() + 20, powerSourcesPanel.getY(), selectionPanel.getWidth(), selectionPanel.getHeight());
+        resultsPanel.setBackground(Color.RED);
 
-    public void addLabel (Label l) { 
-        this.add(l);
-        refresh();
+        addPanel(resultsPanel);
     }
 
     public void assignListenerToHelpersButtons () {
@@ -71,7 +89,14 @@ public class MainFrame extends Frame {
         helperPanel.getClearButton().addActionListener(this);
     }
 
-    public void createPanelsTitles () {
+    public void startResultsPanel () {
+        Label powerOutput = new Label("output power = " + selectedAmplifier.calculatePowerOutput(selectedSignalGenerator.getPower()));
+        
+        resultsPanel.addLabel(powerOutput);
+        refresh();
+    }
+
+    public void createSetupPanelsTitles () {
         Label titleLabel = new Label("WPT System Simulation", 580, 0);
         Label powerSourceLabel = new Label("Power Sources", powerSourcesPanel.getX() + 10, powerSourcesPanel.getY() - 30);
         Label signalGeneratorsLabel = new Label("Signal Generators", signalGeneratorsPanel.getX() + 10, signalGeneratorsPanel.getY() - 30);
@@ -121,15 +146,19 @@ public class MainFrame extends Frame {
             refresh();
         }
         else if (e.getSource() == helperPanel.getSubmitButton()) {
-            if ((powerSourcesPanel.getNumSelections() != 2) || (signalGeneratorsPanel.getNumSelections() != 2) || (amplifiersPanel.getNumSelections() != 2) || (transmittersPanel.getNumSelections() != 2))
-                JOptionPane.showMessageDialog(null, "Fail: Select at least one element from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
+            if ((powerSourcesPanel.getNumSelections() != 2) || (signalGeneratorsPanel.getNumSelections() != 2) || (transmittersPanel.getNumSelections() != 2))
+                JOptionPane.showMessageDialog(null, "Fail: Select exactly one element from each subsystem, amplifiers are optional", "Error", JOptionPane.ERROR_MESSAGE);
             else {
+                selectedPowerSource = (PowerSource) powerSourcesPanel.getComponent();
+                selectedSignalGenerator = (SignalGenerator) signalGeneratorsPanel.getComponent();
+                selectedAmplifier = (Amplifier) amplifiersPanel.getComponent();
+                selectedTransmitter = (Transmitter) transmittersPanel.getComponent();
                 JOptionPane.showMessageDialog(null, "Success: Your selections have been submitted", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearSelectionPanel();
+                startResultsPanel();
             }
         }
-        else if (e.getSource() == helperPanel.getClearButton()) {
+        else if (e.getSource() == helperPanel.getClearButton())
             clearSelectionPanel();
-        }
     }
 }

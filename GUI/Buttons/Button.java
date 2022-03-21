@@ -23,10 +23,6 @@ public class Button extends JButton {
         super (image);
     }
 
-    public Button (Component component, int width, int height) {
-        setUpButton(component.getName(), width, height);
-    }
-
     public void setUpButton (String text, int width, int height) {
         this.setText(text);
         this.setPreferredSize(new Dimension(width, height));
