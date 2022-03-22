@@ -26,6 +26,7 @@ public class MainFrame extends Frame {
     SelectionPanel selectionPanel;
     SelectionPanelHelperPanel helperPanel;
 
+    OptionsPanel optionsPanel;
     Panel resultsPanel;
 
     public MainFrame (String title, LayoutManager layout) {
@@ -43,6 +44,7 @@ public class MainFrame extends Frame {
         selectedTransmitter = new Transmitter("");
 
         resultsPanel = new Panel(null);
+        optionsPanel = new OptionsPanel(new FlowLayout(FlowLayout.CENTER, 0, 50));
 
         topPanel = new Panel(null);
         selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.LEFT, 10, 20));
@@ -77,10 +79,14 @@ public class MainFrame extends Frame {
     }
 
     public void setupRightPanels () {
-        resultsPanel.setBounds(selectionPanel.getX() + selectionPanel.getWidth() + 20, powerSourcesPanel.getY(), selectionPanel.getWidth(), selectionPanel.getHeight());
-        resultsPanel.setBackground(Color.RED);
+        resultsPanel.setBounds(selectionPanel.getX() + selectionPanel.getWidth() + 20, powerSourcesPanel.getY(), 400, powerSourcesPanel.getHeight() + selectionPanel.getHeight() + 10);
+        resultsPanel.setBackground(new Color(32, 32, 32));
+
+        optionsPanel.setBounds(resultsPanel.getX() + resultsPanel.getWidth() + 10, resultsPanel.getY(), 200, resultsPanel.getHeight());
+        optionsPanel.setBackground(Color.GREEN);
 
         addPanel(resultsPanel);
+        addPanel(optionsPanel);
     }
 
     public void assignListenerToHelpersButtons () {
