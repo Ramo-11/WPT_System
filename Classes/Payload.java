@@ -20,7 +20,7 @@ public class Payload extends Component {
         this.powerReceived = powerReceived;
     }
 
-    public double getPowerReceived () {
+    public double getReceivedPower () {
         return this.powerReceived;
     }
 

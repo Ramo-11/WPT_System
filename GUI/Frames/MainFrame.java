@@ -33,7 +33,7 @@ public class MainFrame extends Frame {
     SelectionPanelHelperPanel helperPanel;
 
     OptionsPanel optionsPanel;
-    Panel resultsPanel;
+    ResultsPanels resultsPanel;
 
     public MainFrame (String title, LayoutManager layout) {
         super(title, layout);
@@ -51,7 +51,7 @@ public class MainFrame extends Frame {
         selectedReceiver = new Receiver("");
         selectedPayload = new Payload("");
 
-        resultsPanel = new Panel(null);
+        resultsPanel = new ResultsPanels(new FlowLayout(FlowLayout.CENTER, 100, 35));
         optionsPanel = new OptionsPanel(new FlowLayout(FlowLayout.CENTER, 0, 50));
 
         topPanel = new Panel(null);
@@ -95,10 +95,7 @@ public class MainFrame extends Frame {
 
     public void setupRightPanels () {
         resultsPanel.setBounds(selectionPanel.getX() + selectionPanel.getWidth() + 20, powerSourcesPanel.getY(), 500, powerSourcesPanel.getHeight() + selectionPanel.getHeight() + 10);
-        resultsPanel.setBackground(new Color(200, 200, 200));
-
         optionsPanel.setBounds(resultsPanel.getX() + resultsPanel.getWidth() + 10, resultsPanel.getY(), 140, resultsPanel.getHeight());
-        optionsPanel.setBackground(new Color(48, 124, 255));
 
         addPanel(resultsPanel);
         addPanel(optionsPanel);
@@ -108,13 +105,6 @@ public class MainFrame extends Frame {
         helperPanel.getSelectButton().addActionListener(this);
         helperPanel.getSubmitButton().addActionListener(this);
         helperPanel.getClearButton().addActionListener(this);
-    }
-
-    public void startResultsPanel () {
-        Label powerOutput = new Label("output power = " + selectedAmplifier.calculatePowerOutput(selectedSignalGenerator.getPower()));
-        
-        resultsPanel.addLabel(powerOutput);
-        refresh();
     }
 
     public void createSetupPanelsTitles () {
@@ -192,7 +182,7 @@ public class MainFrame extends Frame {
                 selectedPayload = (Payload) payloadPanel.getComponent();
                 JOptionPane.showMessageDialog(null, "Success: Your selections have been submitted", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearSelectionPanel();
-                startResultsPanel();
+                resultsPanel.startResultsPanel(selectedSignalGenerator, selectedAmplifier, selectedTransmitter, selectedReceiver, selectedPayload);
             }
         }
         else if (e.getSource() == helperPanel.getClearButton())

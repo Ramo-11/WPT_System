@@ -16,4 +16,8 @@ public class Transmitter extends Component {
     public double getEfficiency () {
         return this.efficiency;
     }
+
+    public double calculatePowerOutput (double powerIn) {
+        return powerIn * this.efficiency;
+    }
 }

@@ -3,6 +3,7 @@ package GUI.Panels;
 import GUI.Buttons.*;
 
 import java.awt.LayoutManager;
+import java.awt.Color;
 
 public class OptionsPanel extends Panel {
 
@@ -11,6 +12,7 @@ public class OptionsPanel extends Panel {
 
     public OptionsPanel(LayoutManager layout) {
         super(layout);
+        setBackground(new Color(48, 124, 255));
         setupButtons();
     }
     

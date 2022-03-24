@@ -26,7 +26,6 @@ public class AmplifierPanel extends Panel {
         amplifiers = new ArrayList<>();
 
         amplifiers.add(new Amplifier("SBB5089", 40, "Images/SBB5089.png"));
-        // amplifiers.add(new Amplifier("German", 40));
     }
 
     public void createAmplifierButtons () {
