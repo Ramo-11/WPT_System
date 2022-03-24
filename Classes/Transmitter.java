@@ -1,11 +1,19 @@
 package Classes;
 
-public class Transmitter extends Amplifier {
+public class Transmitter extends Component {
+    final double efficiency;
+
     public Transmitter (String name) {
         super(name);
+        efficiency = 0.0;
     }
 
-    public Transmitter(String name, int gain, String fileName) {
-        super(name, gain, fileName);
+    public Transmitter (String name, double efficiency, String fileName) {
+        super(name, fileName);
+        this.efficiency = efficiency;
+    }
+
+    public double getEfficiency () {
+        return this.efficiency;
     }
 }

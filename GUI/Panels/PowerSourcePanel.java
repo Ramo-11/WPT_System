@@ -25,8 +25,8 @@ public class PowerSourcePanel extends Panel {
     public void createAllPowerSources () {
         powerSources = new ArrayList<>();
 
-        powerSources.add(new PowerSource("outlet", "Images/default.png"));
-        powerSources.add(new PowerSource("laptop", "Images/laptop.jpg"));
+        powerSources.add(new PowerSource("Outlet", "Images/outlet.jpg"));
+        powerSources.add(new PowerSource("Laptop", "Images/laptop.png"));
     }
 
     public void createPowerSourceButtons () {
@@ -47,7 +47,10 @@ public class PowerSourcePanel extends Panel {
             for (Button button : buttons)
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
-                    numSelections++;
+                    if (numSelections == 2)
+                        JOptionPane.showMessageDialog(null, "Fail: only one component is allowed from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
+                    else 
+                        numSelections++;
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

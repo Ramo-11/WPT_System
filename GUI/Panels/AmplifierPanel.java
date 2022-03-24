@@ -25,8 +25,8 @@ public class AmplifierPanel extends Panel {
     public void createAllAmplifiers () {
         amplifiers = new ArrayList<>();
 
-        amplifiers.add(new Amplifier("SBB5089", 40, "Images/amplifier.jpg"));
-        //amplifiers.add(new Amplifier("German", 40));
+        amplifiers.add(new Amplifier("SBB5089", 40, "Images/SBB5089.png"));
+        // amplifiers.add(new Amplifier("German", 40));
     }
 
     public void createAmplifierButtons () {
@@ -45,7 +45,10 @@ public class AmplifierPanel extends Panel {
             for (Button button : buttons)
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
-                    numSelections++;
+                    if (numSelections == 2)
+                        JOptionPane.showMessageDialog(null, "Fail: only one component is allowed from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
+                    else 
+                        numSelections++;
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

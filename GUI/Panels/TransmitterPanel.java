@@ -25,9 +25,9 @@ public class TransmitterPanel extends Panel {
     public void createAllTransmitters () {
         transmitters = new ArrayList<>();
 
-        transmitters.add(new Transmitter("patch element", 6, "Images/patch_element.png"));
-        transmitters.add(new Transmitter("patch array", 20, "Images/patch_array.png"));
-        transmitters.add(new Transmitter("horn antenna", 15, "Images/horn.png"));
+        transmitters.add(new Transmitter("Patch element", 0.6, "Images/patch_element.png"));
+        transmitters.add(new Transmitter("Patch array", 0.8, "Images/patch_array.png"));
+        transmitters.add(new Transmitter("Horn antenna", 0.9, "Images/horn.png"));
     }
 
     public void createTransmitterButtons () {
@@ -48,7 +48,10 @@ public class TransmitterPanel extends Panel {
             for (Button button : buttons)
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
-                    numSelections++;
+                    if (numSelections == 2)
+                        JOptionPane.showMessageDialog(null, "Fail: only one component is allowed from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
+                    else 
+                        numSelections++;
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

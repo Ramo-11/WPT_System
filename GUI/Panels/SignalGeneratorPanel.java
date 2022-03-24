@@ -24,8 +24,9 @@ public class SignalGeneratorPanel extends Panel {
     public void createAllSignalGenerators () {
         signalGenerators = new ArrayList<>();
 
-        signalGenerators.add(new SignalGenerator("magnetron", 1100, "Images/magnetron.jpg"));
-        signalGenerators.add(new SignalGenerator("TPI-1001-B", 0.01, "Images/TPI.jpg"));
+        signalGenerators.add(new SignalGenerator("Magnetron", 1100, "Images/magnetron.jpg"));
+        signalGenerators.add(new SignalGenerator("TPI-1001-B", 0.01, "Images/TPI.png"));
+        signalGenerators.add(new SignalGenerator("KU SG", 250, "Images/KU_SG.png"));
     }
 
     public void createSignalGeneratorButtons () {
@@ -46,7 +47,10 @@ public class SignalGeneratorPanel extends Panel {
             for (Button button : buttons)
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
-                    numSelections++;
+                    if (numSelections == 2)
+                        JOptionPane.showMessageDialog(null, "Fail: only one component is allowed from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
+                    else 
+                        numSelections++;
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

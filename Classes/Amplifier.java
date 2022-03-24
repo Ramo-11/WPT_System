@@ -3,7 +3,7 @@ package Classes;
 import javax.swing.ImageIcon;
 
 public class Amplifier extends Component {
-    int gain;
+    final int gain;
 
     public Amplifier (String name) {
         super(name);
@@ -18,18 +18,8 @@ public class Amplifier extends Component {
         this.image = new ImageIcon(fileName);
     }
 
-    public void setGain (int gain) {
-        this.gain = gain;
-    }
-
     public int getGain () {
         return this.gain;
-    }
-
-    public void deepCopyAmplifier (Amplifier toCopy) {
-        this.name = toCopy.getName();
-        this.gain = toCopy.getGain();
-        this.image = toCopy.getImage();
     }
 
     public double calculatePowerOutput (double powerIn) {
