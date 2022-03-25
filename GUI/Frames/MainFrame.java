@@ -51,7 +51,7 @@ public class MainFrame extends Frame {
         selectedReceiver = new Receiver("");
         selectedPayload = new Payload("");
 
-        resultsPanel = new ResultsPanels(new FlowLayout(FlowLayout.CENTER, 100, 35));
+        resultsPanel = new ResultsPanels(new FlowLayout(FlowLayout.LEFT, 70, 35));
         optionsPanel = new OptionsPanel(new FlowLayout(FlowLayout.CENTER, 0, 50));
 
         topPanel = new Panel(null);
@@ -63,19 +63,19 @@ public class MainFrame extends Frame {
         payloadPanel = new PayloadPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
         selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.LEFT, 10, 20));
-        helperPanel = new SelectionPanelHelperPanel(new FlowLayout(FlowLayout.CENTER, 50, 10));
+        helperPanel = new SelectionPanelHelperPanel(new FlowLayout(FlowLayout.LEFT, 40, 10));
     }
 
     public void setupLeftPanels () {
 
         topPanel.setBounds(0, 0, WIDTH, 50);
         powerSourcesPanel.setBounds(10, 100, 135, HEIGHT - 550);
-        signalGeneratorsPanel.setBounds(powerSourcesPanel.getX() + powerSourcesPanel.getWidth() + 10, 100, 135, HEIGHT - 550);
-        amplifiersPanel.setBounds(signalGeneratorsPanel.getX() + signalGeneratorsPanel.getWidth() + 10, 100, 135, HEIGHT - 550);
-        transmittersPanel.setBounds(amplifiersPanel.getX() + amplifiersPanel.getWidth() + 10, 100, 135, HEIGHT - 550);
-        receiverPanel.setBounds(powerSourcesPanel.getX(), powerSourcesPanel.getY() + powerSourcesPanel.getHeight() + 20, 135, HEIGHT - 550);
-        payloadPanel.setBounds(receiverPanel.getX() + receiverPanel.getWidth() + 10, receiverPanel.getY(), 135, HEIGHT - 550);
-        selectionPanel.setBounds(receiverPanel.getX(), receiverPanel.getY() + receiverPanel.getHeight() + 10, 570, HEIGHT - 600);
+        signalGeneratorsPanel.setBounds(powerSourcesPanel.getX() + powerSourcesPanel.getWidth() + 60, 100, 135, HEIGHT - 550);
+        amplifiersPanel.setBounds(signalGeneratorsPanel.getX() + signalGeneratorsPanel.getWidth() + 60, 100, 135, HEIGHT - 550);
+        transmittersPanel.setBounds(powerSourcesPanel.getX(), powerSourcesPanel.getY() + powerSourcesPanel.getHeight() + 40, 135, HEIGHT - 550);
+        receiverPanel.setBounds(transmittersPanel.getX() + transmittersPanel.getWidth() + 60, transmittersPanel.getY(), 135, HEIGHT - 550);
+        payloadPanel.setBounds(receiverPanel.getX() + receiverPanel.getWidth() + 60, receiverPanel.getY(), 135, HEIGHT - 550);
+        selectionPanel.setBounds(transmittersPanel.getX(), transmittersPanel.getY() + transmittersPanel.getHeight() + 10, 530, HEIGHT - 600);
         helperPanel.setBounds(selectionPanel.getX(), selectionPanel.getY() + selectionPanel.getHeight() + 10, 570, HEIGHT - 670);
 
         createSetupPanelsTitles();
@@ -94,7 +94,7 @@ public class MainFrame extends Frame {
     }
 
     public void setupRightPanels () {
-        resultsPanel.setBounds(selectionPanel.getX() + selectionPanel.getWidth() + 20, powerSourcesPanel.getY(), 500, powerSourcesPanel.getHeight() + selectionPanel.getHeight() + 10);
+        resultsPanel.setBounds(selectionPanel.getX() + selectionPanel.getWidth() + 20, powerSourcesPanel.getY(), 500, 510);
         optionsPanel.setBounds(resultsPanel.getX() + resultsPanel.getWidth() + 10, resultsPanel.getY(), 140, resultsPanel.getHeight());
 
         addPanel(resultsPanel);
@@ -114,7 +114,7 @@ public class MainFrame extends Frame {
         Label amplifiersLabel = new Label("Amplifiers", amplifiersPanel.getX() + 30, amplifiersPanel.getY() - 30);
         Label transmittersLabel = new Label("Transmitters", transmittersPanel.getX() + 30, transmittersPanel.getY() - 30);
         Label receiversLabel = new Label("Receivers", receiverPanel.getX() + 30, receiverPanel.getY() - 30);
-        Label payloadsLabel = new Label("Payloads", payloadPanel.getX() + 30, payloadPanel.getY() - 30);
+        Label payloadsLabel = new Label("Payloads", payloadPanel.getX() + 40, payloadPanel.getY() - 30);
 
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 25));
@@ -182,7 +182,7 @@ public class MainFrame extends Frame {
                 selectedPayload = (Payload) payloadPanel.getComponent();
                 JOptionPane.showMessageDialog(null, "Success: Your selections have been submitted", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearSelectionPanel();
-                resultsPanel.startResultsPanel(selectedSignalGenerator, selectedAmplifier, selectedTransmitter, selectedReceiver, selectedPayload);
+                resultsPanel.startResultsPanel(selectedPowerSource, selectedSignalGenerator, selectedAmplifier, selectedTransmitter, selectedReceiver, selectedPayload);
             }
         }
         else if (e.getSource() == helperPanel.getClearButton())

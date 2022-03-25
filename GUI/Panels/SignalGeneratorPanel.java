@@ -24,7 +24,7 @@ public class SignalGeneratorPanel extends Panel {
     public void createAllSignalGenerators () {
         signalGenerators = new ArrayList<>();
 
-        signalGenerators.add(new SignalGenerator("Magnetron", 1100, "Images/magnetron.jpg"));
+        signalGenerators.add(new SignalGenerator("Magnetron", 1100, "Images/magnetron.png"));
         signalGenerators.add(new SignalGenerator("TPI-1001-B", 0.0001, "Images/TPI.png"));
         signalGenerators.add(new SignalGenerator("KU SG", 250, "Images/KU_SG.png"));
     }
