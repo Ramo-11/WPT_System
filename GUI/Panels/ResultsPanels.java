@@ -1,60 +1,63 @@
 package GUI.Panels;
 
 import Classes.*;
-import GUI.Labels.*;
+import GUI.Buttons.*;
 
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.awt.Color;
 
 public class ResultsPanels extends Panel {
-    ArrayList<Label> labels;
+    ArrayList<Button> buttons;
 
     public ResultsPanels (LayoutManager layout) {
         super (layout);
-        labels = new ArrayList<>();
+        buttons = new ArrayList<>();
         setBackground(new Color(200, 200, 200));
     }
 
-    public void startResultsPanel (PowerSource ps, SignalGenerator sg, Amplifier amp, Transmitter t, Receiver r, Payload p) {
-        Label imageLabel;
-        
-        imageLabel = new Label(ps.getImage());
-        add(imageLabel);
-        imageLabel = new Label(sg.getImage());
-        add(imageLabel);
-        imageLabel = new Label(amp.getImage());
-        add(imageLabel);
-        imageLabel = new Label(t.getImage());
-        add(imageLabel);
-        imageLabel = new Label(r.getImage());
-        add(imageLabel);
-        imageLabel = new Label(p.getImage());
-        add(imageLabel);
-        
-        labels.add(new Label("Power from signalGenerator = " + sg.getPower() + " W"));
-        labels.add(new Label("Power from amplifier = " + amp.calculatePowerOutput(sg.getPower()) + " W"));
-        labels.add(new Label("Power from transmitter = " + t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower())) + " W"));
-        labels.add(new Label("Power from receiver = " + r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))) + " W"));
-        
-        p.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))));
-        double pReceivedMinusRequired = p.getReceivedPower() - p.getRequiredPower();
-        if(pReceivedMinusRequired >= 0 && pReceivedMinusRequired > 50) {
-            labels.add(new Label("Too much power has been supplied to the paylaod"));
+    public void startResultsPanel (PowerSource ps, SignalGenerator sg, Amplifier amp, Transmitter t, Receiver r, Load p) {
+        buttons.add(new Button("Power = " + String.format("%.5f", sg.getPower()) + " W", sg.getImage()));
+        if(amp.getName().equals("")) {
+            buttons.add(new Button("Power = " + String.format("%.5f", t.calculatePowerOutput(sg.getPower())) + " W", t.getImage()));
+            buttons.add(new Button("Power = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(sg.getPower()))) + " W", r.getImage()));
+            p.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))));
         }
-        else if (pReceivedMinusRequired <= 0) {
-            labels.add(new Label("Not enought power has been sent to the paylaod"));
+
+        else {
+            buttons.add(new Button("Power = " + String.format("%.5f", amp.calculatePowerOutput(sg.getPower())) + " W", amp.getImage()));
+            buttons.add(new Button("Power = " + String.format("%.5f", t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))) + " W", t.getImage()));
+            buttons.add(new Button("Power = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower())))) + " W", r.getImage()));
+            p.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(sg.getPower())));
+        }
+
+        double pReceivedMinusRequired = p.getReceivedPower() - p.getRequiredPower();
+        if(pReceivedMinusRequired > 50) {
+            buttons.add(new Button("Too much power has been supplied to the load", 200, 30));
+        }
+        else if (pReceivedMinusRequired < 0.02) {
+            buttons.add(new Button("Not enough power has been sent to the load", 400, 30));
         }
         else {
-            labels.add(new Label("Payload is receiving sufficient power"));
+            buttons.add(new Button("Load is receiving sufficient power", 200, 30));
         }
 
-        addLabels();
+        addButtonsToPanel();
+        refreshPanel();
     }
 
-    public void addLabels() {
-        for (Label l : labels)
-            addLabel(l);
+    public void enableMetamaterial () {
+        Transmitter metamaterial = new Transmitter("Metamaterial", 1.1, "Images/metamateria.png");
+        Button metamaterialButton = new Button(metamaterial);
+        addButton(metamaterialButton);
+        refreshPanel();
+    }
+
+    public void addButtonsToPanel() {
+        for (Button b : buttons)
+            addButton(b);
+        // This allows the buttons to be reseted in the case of a clear event so they don't get duplicated
+        buttons.clear();
     }
 
 }

@@ -27,6 +27,7 @@ public class PowerSourcePanel extends Panel {
 
         powerSources.add(new PowerSource("Outlet", "Images/outlet.jpg"));
         powerSources.add(new PowerSource("Laptop", "Images/laptop.png"));
+        powerSources.add(new PowerSource("Diesel Engine", "Images/diesel_engine.jps"));
     }
 
     public void createPowerSourceButtons () {

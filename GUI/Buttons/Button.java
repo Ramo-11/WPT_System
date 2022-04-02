@@ -11,19 +11,34 @@ public class Button extends JButton {
     Component component;
 
     public Button (String text) {
-        setUpButton(text, 120, 30);
+        setupButton(text, 120, 30);
+    }
+
+    public Button(String text, int width, int height) {
+        setupButton(text, width, height);
+        setOpaque(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
     }
 
     public Button (Component component) {
         this.component = component;
-        setUpButton(component.getName(), 120, 30);
+        setupButton(component.getName(), 120, 30);
     }
 
     public Button (ImageIcon image) {
-        super (image);
+        super(image);
     }
 
-    public void setUpButton (String text, int width, int height) {
+    public Button (String text, ImageIcon image) {
+        super(image);
+        setupButton(text, 260, 70);
+        setOpaque(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+    }
+
+    public void setupButton (String text, int width, int height) {
         this.setText(text);
         this.setPreferredSize(new Dimension(width, height));
         this.setFocusable(false);

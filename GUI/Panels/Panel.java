@@ -54,6 +54,11 @@ public class Panel extends JPanel implements ActionListener {
         return this.numSelections;
     }
 
+    public void refreshPanel () {
+        revalidate();
+        repaint();
+    }
+
     public void clearPanel () {
         removeAll();
         revalidate();

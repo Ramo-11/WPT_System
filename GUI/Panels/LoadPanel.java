@@ -10,11 +10,11 @@ import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
-public class PayloadPanel extends Panel {
+public class LoadPanel extends Panel {
 
-    ArrayList<Payload> payloads;
+    ArrayList<Load> loads;
 
-    public PayloadPanel(LayoutManager layout) {
+    public LoadPanel(LayoutManager layout) {
         super(layout);
         setBackground(new Color(48, 124, 255));
         createAllReceivers();
@@ -23,16 +23,16 @@ public class PayloadPanel extends Panel {
     }
     
     public void createAllReceivers () {
-        payloads = new ArrayList<>();
+        loads = new ArrayList<>();
 
-        payloads.add(new Payload("Drone", 40.0, "Images/drone.png"));
-        payloads.add(new Payload("LED", 0.01, "Images/LED.png"));
+        loads.add(new Load("Drone", 40.0, "Images/drone.png"));
+        loads.add(new Load("LED", 0.01, "Images/LED.png"));
     }
 
     public void createReceiverButtons () {
         buttons = new ArrayList<>();
 
-        for(Payload a : payloads)
+        for(Load a : loads)
             buttons.add(new Button(a));
 
         for(Button b : buttons) {

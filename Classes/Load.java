@@ -1,16 +1,16 @@
 package Classes;
 
-public class Payload extends Component {
+public class Load extends Component {
     double powerReceived;
     final double requiredPower; 
 
-    public Payload (String name) {
+    public Load (String name) {
         super (name);
         powerReceived = 0;
         requiredPower = 0;
     }
 
-    public Payload (String name, double requiredPower, String fileName) {
+    public Load (String name, double requiredPower, String fileName) {
         super (name, fileName);
         powerReceived = 0;
         this.requiredPower = requiredPower;

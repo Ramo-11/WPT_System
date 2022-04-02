@@ -25,7 +25,9 @@ public class ReceiverPanel extends Panel {
     public void createAllReceivers () {
         receivers = new ArrayList<>();
 
+        receivers.add(new Receiver("Patch element", 0.6, "Images/patch_element.png"));
         receivers.add(new Receiver("Patch array", 0.8, "Images/patch_array.png"));
+        receivers.add(new Receiver("Horn antenna", 0.9, "Images/horn.png"));
     }
 
     public void createReceiverButtons () {
