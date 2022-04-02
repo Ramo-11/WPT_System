@@ -5,6 +5,7 @@ import GUI.Labels.*;
 import Classes.*;
 
 import java.util.*;
+import java.text.DecimalFormat;
 import java.awt.event.*;
 import javax.swing.JPanel;
 import java.awt.LayoutManager;
@@ -14,6 +15,7 @@ public class Panel extends JPanel implements ActionListener {
     ArrayList<Button> buttons;
     Component selectedComponent;
     int numSelections;
+    DecimalFormat formatter;
 
     public Panel(LayoutManager layout) {
         super(layout);
@@ -21,6 +23,7 @@ public class Panel extends JPanel implements ActionListener {
         selectedComponent = new Component("none");
         buttons = new ArrayList<>();
         numSelections = 0;
+        formatter = new DecimalFormat();
     }
 
     public void addButton(Button b) {

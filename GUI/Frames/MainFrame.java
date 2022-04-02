@@ -99,12 +99,12 @@ public class MainFrame extends Frame {
     }
 
     public void createSetupPanelsTitles () {
-        Label powerSourceLabel = new Label("Power Sources", powerSourcesPanel.getX() + 30, powerSourcesPanel.getY() - 30);
-        Label signalGeneratorsLabel = new Label("Signal Generators", signalGeneratorsPanel.getX() + 20, signalGeneratorsPanel.getY() - 30);
+        Label powerSourceLabel = new Label("Power Sources*", powerSourcesPanel.getX() + 30, powerSourcesPanel.getY() - 30);
+        Label signalGeneratorsLabel = new Label("Signal Generators*", signalGeneratorsPanel.getX() + 20, signalGeneratorsPanel.getY() - 30);
         Label amplifiersLabel = new Label("Amplifiers", amplifiersPanel.getX() + 50, amplifiersPanel.getY() - 30);
-        Label transmittersLabel = new Label("Transmitters", transmittersPanel.getX() + 40, transmittersPanel.getY() - 30);
-        Label receiversLabel = new Label("Receivers", receiverPanel.getX() + 50, receiverPanel.getY() - 30);
-        Label payloadsLabel = new Label("Payloads", loadPanel.getX() + 50, loadPanel.getY() - 30);
+        Label transmittersLabel = new Label("Transmitters*", transmittersPanel.getX() + 40, transmittersPanel.getY() - 30);
+        Label receiversLabel = new Label("Receivers*", receiverPanel.getX() + 50, receiverPanel.getY() - 30);
+        Label payloadsLabel = new Label("Loads*", loadPanel.getX() + 50, loadPanel.getY() - 30);
 
         addLabel(powerSourceLabel);
         addLabel(signalGeneratorsLabel);

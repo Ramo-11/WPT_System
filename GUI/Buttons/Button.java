@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 public class Button extends JButton {
     Component component;
@@ -16,6 +17,7 @@ public class Button extends JButton {
 
     public Button(String text, int width, int height) {
         setupButton(text, width, height);
+        setFont(new Font("Arial", 0, 15));
         setOpaque(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
@@ -32,17 +34,19 @@ public class Button extends JButton {
 
     public Button (String text, ImageIcon image) {
         super(image);
-        setupButton(text, 260, 70);
+        setupButton(text, 280, 70);
+        setFont(new Font("Arial", 0, 12));
+        // make the button transparent
         setOpaque(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
     }
 
     public void setupButton (String text, int width, int height) {
-        this.setText(text);
-        this.setPreferredSize(new Dimension(width, height));
-        this.setFocusable(false);
-        this.setForeground(Color.BLACK);
+        setText(text);
+        setPreferredSize(new Dimension(width, height));
+        setFocusable(false);
+        setForeground(Color.BLACK);
     }
 
     public void setComponent (Component component) {

@@ -17,7 +17,10 @@ public class ResultsPanels extends Panel {
     }
 
     public void startResultsPanel (PowerSource ps, SignalGenerator sg, Amplifier amp, Transmitter t, Receiver r, Load p) {
+        
         buttons.add(new Button("Power = " + String.format("%.5f", sg.getPower()) + " W", sg.getImage()));
+        
+        // No amplifier was picked
         if(amp.getName().equals("")) {
             buttons.add(new Button("Power = " + String.format("%.5f", t.calculatePowerOutput(sg.getPower())) + " W", t.getImage()));
             buttons.add(new Button("Power = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(sg.getPower()))) + " W", r.getImage()));
@@ -33,13 +36,13 @@ public class ResultsPanels extends Panel {
 
         double pReceivedMinusRequired = p.getReceivedPower() - p.getRequiredPower();
         if(pReceivedMinusRequired > 50) {
-            buttons.add(new Button("Too much power has been supplied to the load", 200, 30));
+            buttons.add(new Button("Too much power has been supplied to the load", 350, 30));
         }
         else if (pReceivedMinusRequired < 0.02) {
-            buttons.add(new Button("Not enough power has been sent to the load", 400, 30));
+            buttons.add(new Button("Not enough power has been sent to the load", 350, 30));
         }
         else {
-            buttons.add(new Button("Load is receiving sufficient power", 200, 30));
+            buttons.add(new Button("Load is receiving sufficient power", 350, 30));
         }
 
         addButtonsToPanel();

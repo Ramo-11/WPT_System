@@ -47,7 +47,7 @@ public class SignalGeneratorPanel extends Panel {
             for (Button button : buttons)
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
-                    if (numSelections == 2)
+                    if (numSelections == 1)
                         JOptionPane.showMessageDialog(null, "Fail: only one component is allowed from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
                     else 
                         numSelections++;
