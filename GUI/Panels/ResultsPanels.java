@@ -16,7 +16,7 @@ public class ResultsPanels extends Panel {
         setBackground(new Color(200, 200, 200));
     }
 
-    public void startResultsPanel (PowerSource ps, SignalGenerator sg, Amplifier amp, Transmitter t, Receiver r, Load p) {
+    public void startResultsPanel (PowerSource ps, SignalGenerator sg, Amplifier amp, Transmitter t, Receiver r, Load l) {
         
         buttons.add(new Button("Power = " + String.format("%.5f", sg.getPower()) + " W", sg.getImage()));
         
@@ -24,17 +24,16 @@ public class ResultsPanels extends Panel {
         if(amp.getName().equals("")) {
             buttons.add(new Button("Power = " + String.format("%.5f", t.calculatePowerOutput(sg.getPower())) + " W", t.getImage()));
             buttons.add(new Button("Power = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(sg.getPower()))) + " W", r.getImage()));
-            p.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))));
         }
 
         else {
             buttons.add(new Button("Power = " + String.format("%.5f", amp.calculatePowerOutput(sg.getPower())) + " W", amp.getImage()));
             buttons.add(new Button("Power = " + String.format("%.5f", t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))) + " W", t.getImage()));
             buttons.add(new Button("Power = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower())))) + " W", r.getImage()));
-            p.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(sg.getPower())));
+            l.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))));        
         }
 
-        double pReceivedMinusRequired = p.getReceivedPower() - p.getRequiredPower();
+        double pReceivedMinusRequired = l.getReceivedPower() - l.getRequiredPower();
         if(pReceivedMinusRequired > 50) {
             buttons.add(new Button("Too much power has been supplied to the load", 350, 30));
         }

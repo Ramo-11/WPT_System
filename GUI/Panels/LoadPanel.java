@@ -26,7 +26,7 @@ public class LoadPanel extends Panel {
         loads = new ArrayList<>();
 
         loads.add(new Load("Drone", 40.0, "Images/drone.png"));
-        loads.add(new Load("LED", 0.01, "Images/LED.png"));
+        loads.add(new Load("LED", 0.02, "Images/LED.png"));
     }
 
     public void createReceiverButtons () {
