@@ -18,7 +18,7 @@ public class MetamaterialPanel extends Panel {
         super(layout);
         setBackground(new Color(48, 124, 255));
 
-        metamaterial = new Transmitter("Metamaterial", 1.2);
+        metamaterial = new Transmitter("Metamaterial", 1.2, "Images/metamaterial.png");
         createTransmitterButtons();
         addActionListenerToButtons();
     }
@@ -46,10 +46,9 @@ public class MetamaterialPanel extends Panel {
                     this.numSelections++;
 
                     Color m_green = new Color(77, 158, 73);
-                    Color m_red = new Color(230, 30, 16);
 
                     if (button.getBackground().getRGB() == m_green.getRGB())
-                            button.setBackground(m_red);
+                            setColorToDefault();
                     else
                         button.setBackground(m_green);
                 }

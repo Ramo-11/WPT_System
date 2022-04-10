@@ -20,7 +20,7 @@ public class Panel extends JPanel implements ActionListener {
     public Panel(LayoutManager layout) {
         super(layout);
         setBackground(new Color(108, 110, 112));
-        selectedComponent = new Component("none");
+        selectedComponent = new Component("default");
         buttons = new ArrayList<>();
         numSelections = 0;
         formatter = new DecimalFormat();
@@ -75,6 +75,10 @@ public class Panel extends JPanel implements ActionListener {
     public void refreshPanel () {
         revalidate();
         repaint();
+    }
+
+    public void setSelectedComponent (Component c) {
+        selectedComponent = c;
     }
 
     public void clearPanel () {

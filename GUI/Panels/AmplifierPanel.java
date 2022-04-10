@@ -16,6 +16,7 @@ public class AmplifierPanel extends Panel {
 
     public AmplifierPanel(LayoutManager layout) {
         super(layout);
+
         setBackground(new Color(48, 124, 255));
         createAllAmplifiers();
         createAmplifierButtons();

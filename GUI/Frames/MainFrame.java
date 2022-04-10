@@ -58,9 +58,9 @@ public class MainFrame extends Frame {
         receiverPanel = new ReceiverPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
         loadPanel = new LoadPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
-        selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.LEFT, 30, 20));
+        selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
-        resultsPanel = new ResultsPanels(new FlowLayout(FlowLayout.CENTER, 10, 15));
+        resultsPanel = new ResultsPanels(new FlowLayout(FlowLayout.CENTER, 5, 10));
         helperPanel = new HelperPanel(new FlowLayout(FlowLayout.CENTER, 40, 10));
     }
 
@@ -100,7 +100,6 @@ public class MainFrame extends Frame {
         helperPanel.getSelectButton().addActionListener(this);
         helperPanel.getSubmitButton().addActionListener(this);
         helperPanel.getClearButton().addActionListener(this);
-        helperPanel.getClearAllButton().addActionListener(this);
     }
 
     public void createSetupPanelsTitles () {
@@ -119,7 +118,10 @@ public class MainFrame extends Frame {
         addLabel(payloadsLabel);
     }
 
-    public void clearSelectionPanel () {
+    public void clearPanels () {
+        Transmitter c = new Transmitter("", 1.0, "");
+        Amplifier a = new Amplifier("", 0, "");
+
         selectionPanel.clearPanel();
         powerSourcesPanel.setNumSelections(0);
         powerSourcesPanel.setColorToDefault();
@@ -127,10 +129,14 @@ public class MainFrame extends Frame {
         signalGeneratorsPanel.setColorToDefault();
         amplifiersPanel.setNumSelections(0);
         amplifiersPanel.setColorToDefault();
+        amplifiersPanel.setSelectedComponent(a);
+        selectedAmplifier = (Amplifier) amplifiersPanel.getComponent();
         transmittersPanel.setNumSelections(0);
         transmittersPanel.setColorToDefault();
         metamaterialPanel.setNumSelections(0);
         metamaterialPanel.setColorToDefault();
+        metamaterialPanel.setSelectedComponent(c);
+        selectedMetamaterial = (Transmitter) metamaterialPanel.getComponent();
         receiverPanel.setNumSelections(0);
         receiverPanel.setColorToDefault();
         loadPanel.setNumSelections(0);
@@ -138,7 +144,7 @@ public class MainFrame extends Frame {
     }
 
     public void clearEverything() {
-        clearSelectionPanel();
+        clearPanels();
         resultsPanel.clearPanel();
     }
 
@@ -179,27 +185,30 @@ public class MainFrame extends Frame {
             refresh();
         }
         else if (e.getSource() == helperPanel.getSubmitButton()) {
-            if ((powerSourcesPanel.getNumSelections() != 2) || (signalGeneratorsPanel.getNumSelections() != 2) || (transmittersPanel.getNumSelections() != 2))
+            if ((powerSourcesPanel.getNumSelections() != 2) || (signalGeneratorsPanel.getNumSelections() != 2) || (transmittersPanel.getNumSelections() != 2)
+                  || (receiverPanel.getNumSelections() != 2) || (loadPanel.getNumSelections() != 2))
                 JOptionPane.showMessageDialog(null, "Fail: Select exactly one element from each subsystem, amplifiers are optional", "Error", JOptionPane.ERROR_MESSAGE);
             else {
+                selectedPowerSource = (PowerSource) powerSourcesPanel.getComponent();
+                selectedSignalGenerator = (SignalGenerator) signalGeneratorsPanel.getComponent();
+                selectedTransmitter = (Transmitter) transmittersPanel.getComponent();
+                selectedReceiver = (Receiver) receiverPanel.getComponent();
+                selectedPayload = (Load) loadPanel.getComponent();
                 try {
-                    selectedPowerSource = (PowerSource) powerSourcesPanel.getComponent();
-                    selectedSignalGenerator = (SignalGenerator) signalGeneratorsPanel.getComponent();
-                    selectedTransmitter = (Transmitter) transmittersPanel.getComponent();
-                    selectedReceiver = (Receiver) receiverPanel.getComponent();
-                    selectedPayload = (Load) loadPanel.getComponent();
                     selectedAmplifier = (Amplifier) amplifiersPanel.getComponent();
+                } catch (Exception ex) {
+                    System.out.println("Exception was caught: No amplifier was picked");
+                }
+                try {
                     selectedMetamaterial = (Transmitter) metamaterialPanel.getComponent();
                 } catch (Exception ex) {
-                    System.out.println("Exception was caught, but that is fine");
+                    System.out.println("Exception was caught: No metamaterial was picked");
                 }
                 JOptionPane.showMessageDialog(null, "Success: Your selections have been submitted", "Success", JOptionPane.INFORMATION_MESSAGE);
                 resultsPanel.startResultsPanel(selectedPowerSource, selectedSignalGenerator, selectedAmplifier, selectedTransmitter, selectedMetamaterial, selectedReceiver, selectedPayload);
             }
         }
         else if (e.getSource() == helperPanel.getClearButton())
-            clearSelectionPanel();
-        else if (e.getSource() == helperPanel.getClearAllButton())
             clearEverything();
     }
 }

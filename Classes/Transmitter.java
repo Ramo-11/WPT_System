@@ -5,7 +5,7 @@ public class Transmitter extends Component {
 
     public Transmitter (String name) {
         super(name);
-        efficiency = 0.0;
+        efficiency = 1.0;
     }
 
     public Transmitter (String name, double efficiency, String fileName) {

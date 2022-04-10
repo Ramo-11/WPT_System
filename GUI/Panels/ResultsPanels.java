@@ -17,21 +17,44 @@ public class ResultsPanels extends Panel {
     }
 
     public void startResultsPanel (PowerSource ps, SignalGenerator sg, Amplifier amp, Transmitter t, Transmitter m, Receiver r, Load l) {
+        double sg_power = 0;
+        double amp_power = 0;
+        double t_power = 0;
+        double m_power = 0;
+        double r_power = 0;
+
+        sg_power = sg.getPower();
+        amp_power = amp.calculatePowerOutput(sg_power);
+        t_power = t.calculatePowerOutput(amp_power);
+        m_power = m.calculatePowerOutput(t_power);
+        r_power = r.calculatePowerOutput(m_power);
+            
+        buttons.add(new Button("Power out = " + String.format("%.5f", sg_power) + " W", sg.getImage()));
         
-        buttons.add(new Button("Power out = " + String.format("%.5f", sg.getPower()) + " W", sg.getImage()));
-        
-        // No amplifier was picked
-        if(amp.getName().equals("")) {
-            buttons.add(new Button("Power out = " + String.format("%.5f", t.calculatePowerOutput(sg.getPower())) + " W", t.getImage()));
-            buttons.add(new Button("Power out = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(sg.getPower()))) + " W", r.getImage()));
+        // No amplifier nor metamaterial were picked
+        if(amp.getName().equals("") && m.getName().equals("")) {
+            buttons.add(new Button("Power out = " + String.format("%.5f", t_power) + " W", t.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", r_power) + " W", r.getImage()));
+        }
+        else if(amp.getName().equals("")) {
+            buttons.add(new Button("Power out = " + String.format("%.5f", t_power) + " W", t.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", m_power) + " W", m.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", r_power) + " W", r.getImage()));
         }
 
-        else {
-            buttons.add(new Button("Power out = " + String.format("%.5f", amp.calculatePowerOutput(sg.getPower())) + " W", amp.getImage()));
-            buttons.add(new Button("Power out = " + String.format("%.5f", t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))) + " W", t.getImage()));
-            buttons.add(new Button("Power out = " + String.format("%.5f", r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower())))) + " W", r.getImage()));
-            l.setPowerReceived(r.calculatePowerOutput(t.calculatePowerOutput(amp.calculatePowerOutput(sg.getPower()))));        
+        else if(m.getName().equals("")) {
+            buttons.add(new Button("Power out = " + String.format("%.5f", amp_power) + " W", amp.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", t_power) + " W", t.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", r_power) + " W", r.getImage()));     
         }
+        else {
+            buttons.add(new Button("Power out = " + String.format("%.5f", amp_power) + " W", amp.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", t_power) + " W", t.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", m_power) + " W", m.getImage()));
+            buttons.add(new Button("Power out = " + String.format("%.5f", r_power) + " W", r.getImage()));
+        }
+
+        l.setPowerReceived(r_power);   
 
         double pReceivedMinusRequired = l.getReceivedPower() - l.getRequiredPower();
         if(pReceivedMinusRequired > 50)
@@ -41,7 +64,8 @@ public class ResultsPanels extends Panel {
         else 
             buttons.add(new Button("Load is receiving sufficient power", 350, 30));
 
-        buttons.add(new Button("System's Efficiency = " + (l.getReceivedPower()/amp.calculatePowerOutput(sg.getPower()) * 100 + "%"), 350, 30));
+        double efficiency = Math.round(l.getReceivedPower()/amp_power * 100);
+        buttons.add(new Button("System's Efficiency = " + efficiency + "%", 350, 30));
         addButtonsToPanel();
         refreshPanel();
     }

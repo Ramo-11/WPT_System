@@ -9,7 +9,6 @@ public class HelperPanel extends Panel {
     Button select;
     Button submit;
     Button clear;
-    Button clearAll;
 
     public HelperPanel(LayoutManager layout) {
         super(layout);
@@ -22,17 +21,14 @@ public class HelperPanel extends Panel {
         select = new Button("Select");
         submit = new Button("Submit");
         clear = new Button("Clear");
-        clearAll = new Button("Clear All");
 
         select.setBackground(new Color(237, 232, 232));
         submit.setBackground(new Color(237, 232, 232));
         clear.setBackground(new Color(237, 232, 232));
-        clearAll.setBackground(new Color(237, 232, 232));
 
         this.add(select);
         this.add(submit);
         this.add(clear);
-        this.add(clearAll);
     }
 
     public Button getSelectButton () {
@@ -45,9 +41,5 @@ public class HelperPanel extends Panel {
 
     public Button getClearButton () {
         return this.clear;
-    }
-
-    public Button getClearAllButton () {
-        return this.clearAll;
     }
 }
