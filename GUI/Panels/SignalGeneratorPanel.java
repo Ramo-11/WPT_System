@@ -39,6 +39,8 @@ public class SignalGeneratorPanel extends Panel {
             b.setFont(new Font("Aria", Font.PLAIN, 10));
             this.add(b);
         }
+
+        setColorToDefault();
     }
 
     @Override
@@ -46,11 +48,13 @@ public class SignalGeneratorPanel extends Panel {
         try {
             for (Button button : buttons)
                 if (e.getSource() == button) {
-                    selectedComponent = button.getComponent();
-                    if (numSelections == 1)
+                    if (this.numSelections >= 1)
                         JOptionPane.showMessageDialog(null, "Fail: only one component is allowed from each subsystem", "Error", JOptionPane.ERROR_MESSAGE);
-                    else 
-                        numSelections++;
+                    else {
+                        selectedComponent = button.getComponent();
+                        this.numSelections++;
+                        button.setBackground(new Color(77, 158, 73));
+                    }
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

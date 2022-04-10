@@ -13,6 +13,11 @@ public class Transmitter extends Component {
         this.efficiency = efficiency;
     }
 
+    public Transmitter (String name, double efficiency) {
+        super(name);
+        this.efficiency = efficiency;
+    }
+
     public double getEfficiency () {
         return this.efficiency;
     }

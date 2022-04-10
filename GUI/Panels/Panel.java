@@ -57,6 +57,21 @@ public class Panel extends JPanel implements ActionListener {
         return this.numSelections;
     }
 
+    public void setColorToDefault() {
+        for (Button b : buttons)
+            b.setBackground(new Color(237, 232, 232));
+    }
+
+    public void disableAllButton () {
+        for (Button b : buttons)
+            b.setEnabled(false);
+    }
+
+    public void enableAllButton () {
+        for (Button b : buttons)
+            b.setEnabled(true);
+    }
+
     public void refreshPanel () {
         revalidate();
         repaint();

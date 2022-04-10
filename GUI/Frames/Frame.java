@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.LayoutManager;
 import GUI.Panels.*;
 import GUI.Labels.*;
+import GUI.Buttons.*;
 
 public class Frame extends JFrame implements ActionListener {
     public static final int WIDTH = 1280;
@@ -38,6 +39,11 @@ public class Frame extends JFrame implements ActionListener {
 
     public void addPanel (Panel p) {
         this.add(p);
+        refresh();
+    }
+
+    public void addButton(Button b) {
+        this.add(b);
         refresh();
     }
 

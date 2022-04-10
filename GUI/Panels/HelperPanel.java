@@ -10,12 +10,12 @@ public class HelperPanel extends Panel {
     Button submit;
     Button clear;
     Button clearAll;
-    Button metamaterial;
 
     public HelperPanel(LayoutManager layout) {
         super(layout);
         setBackground(new Color(0, 0, 0, 0));
         createButtons();
+        setColorToDefault();
     }
 
     public void createButtons () {
@@ -23,13 +23,16 @@ public class HelperPanel extends Panel {
         submit = new Button("Submit");
         clear = new Button("Clear");
         clearAll = new Button("Clear All");
-        metamaterial = new Button("Metamaterial");
+
+        select.setBackground(new Color(237, 232, 232));
+        submit.setBackground(new Color(237, 232, 232));
+        clear.setBackground(new Color(237, 232, 232));
+        clearAll.setBackground(new Color(237, 232, 232));
 
         this.add(select);
         this.add(submit);
         this.add(clear);
         this.add(clearAll);
-        this.add(metamaterial);
     }
 
     public Button getSelectButton () {
@@ -46,9 +49,5 @@ public class HelperPanel extends Panel {
 
     public Button getClearAllButton () {
         return this.clearAll;
-    }
-
-    public Button getMetamaterialButton () {
-        return this.metamaterial;
     }
 }
