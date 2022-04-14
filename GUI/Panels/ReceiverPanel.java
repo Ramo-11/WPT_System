@@ -16,7 +16,7 @@ public class ReceiverPanel extends Panel {
 
     public ReceiverPanel(LayoutManager layout) {
         super(layout);
-        setBackground(new Color(48, 124, 255));
+        setBackground(new Color(11, 68, 161));
         createAllReceivers();
         createReceiverButtons();
         addActionListenerToButtons();
@@ -25,9 +25,9 @@ public class ReceiverPanel extends Panel {
     public void createAllReceivers () {
         receivers = new ArrayList<>();
 
-        receivers.add(new Receiver("Patch element", 0.6, "Images/patch_element.png"));
-        receivers.add(new Receiver("Patch array", 0.8, "Images/patch_array.png"));
-        receivers.add(new Receiver("Horn antenna", 0.9, "Images/horn.png"));
+        receivers.add(new Receiver("Patch element", 0.4, "Images/patch_element.png"));
+        receivers.add(new Receiver("Patch array", 0.6, "Images/patch_array.png"));
+        receivers.add(new Receiver("Horn antenna", 0.7, "Images/horn.png"));
     }
 
     public void createReceiverButtons () {
@@ -54,7 +54,7 @@ public class ReceiverPanel extends Panel {
                     else {
                         selectedComponent = button.getComponent();
                         this.numSelections++;
-                        button.setBackground(new Color(77, 158, 73));
+                        button.setBackground(new Color(171, 203, 255));
                     }
                 }
         } catch (Exception ex) {

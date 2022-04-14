@@ -16,7 +16,7 @@ public class TransmitterPanel extends Panel {
 
     public TransmitterPanel(LayoutManager layout) {
         super(layout);
-        setBackground(new Color(48, 124, 255));
+        setBackground(new Color(11, 68, 161));
         createAllTransmitters();
         createTransmitterButtons();
         addActionListenerToButtons();
@@ -54,7 +54,7 @@ public class TransmitterPanel extends Panel {
                     else {
                         selectedComponent = button.getComponent();
                         this.numSelections++;
-                        button.setBackground(new Color(77, 158, 73));
+                        button.setBackground(new Color(171, 203, 255));
                     }
                 }
         } catch (Exception ex) {

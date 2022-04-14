@@ -16,7 +16,7 @@ public class MetamaterialPanel extends Panel {
 
     public MetamaterialPanel(LayoutManager layout) {
         super(layout);
-        setBackground(new Color(48, 124, 255));
+        setBackground(new Color(11, 68, 161));
 
         metamaterial = new Transmitter("Metamaterial", 1.2, "Images/metamaterial.png");
         createTransmitterButtons();
@@ -44,13 +44,13 @@ public class MetamaterialPanel extends Panel {
                 if (e.getSource() == button) {
                     selectedComponent = button.getComponent();
                     this.numSelections++;
+            
+                    Color m_light_blue = new Color(171, 203, 255);
 
-                    Color m_green = new Color(77, 158, 73);
-
-                    if (button.getBackground().getRGB() == m_green.getRGB())
+                    if (button.getBackground().getRGB() == m_light_blue.getRGB())
                             setColorToDefault();
                     else
-                        button.setBackground(m_green);
+                        button.setBackground(m_light_blue);
                 }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Exception was caught", "Error", JOptionPane.ERROR_MESSAGE);

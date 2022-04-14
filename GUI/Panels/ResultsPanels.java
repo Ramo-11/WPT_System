@@ -57,15 +57,15 @@ public class ResultsPanels extends Panel {
         l.setPowerReceived(r_power);   
 
         double pReceivedMinusRequired = l.getReceivedPower() - l.getRequiredPower();
-        if(pReceivedMinusRequired > 50)
-            buttons.add(new Button("Too much power has been supplied to the load", 350, 30));
+        if(pReceivedMinusRequired > 500)
+            buttons.add(new Button("load is receiving too much power", 400, 30, 18));
         else if (pReceivedMinusRequired < 0.02)
-            buttons.add(new Button("Not enough power has been sent to the load", 350, 30));
+            buttons.add(new Button("load is not receiving sufficient power", 400, 30, 18));
         else 
-            buttons.add(new Button("Load is receiving sufficient power", 350, 30));
+            buttons.add(new Button("Load is receiving sufficient power", 400, 30, 18));
 
         double efficiency = Math.round(l.getReceivedPower()/amp_power * 100);
-        buttons.add(new Button("System's Efficiency = " + efficiency + "%", 350, 30));
+        buttons.add(new Button("System's Efficiency = " + efficiency + "%", 350, 30, 18));
         addButtonsToPanel();
         refreshPanel();
     }

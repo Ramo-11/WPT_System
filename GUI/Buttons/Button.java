@@ -23,6 +23,14 @@ public class Button extends JButton {
         setBorderPainted(false);
     }
 
+    public Button(String text, int width, int height, int fontSize) {
+        setupButton(text, width, height);
+        setFont(new Font("Arial", 0, fontSize));
+        setOpaque(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+    }
+
     public Button (Component component) {
         this.component = component;
         setupButton(component.getName(), 120, 30);

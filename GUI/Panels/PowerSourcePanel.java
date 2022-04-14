@@ -16,7 +16,7 @@ public class PowerSourcePanel extends Panel {
 
     public PowerSourcePanel(LayoutManager layout) {
         super(layout);
-        setBackground(new Color(48, 124, 255));
+        setBackground(new Color(11, 68, 161));
         createAllPowerSources();
         createPowerSourceButtons();
         addActionListenerToButtons();
@@ -27,7 +27,7 @@ public class PowerSourcePanel extends Panel {
 
         powerSources.add(new PowerSource("Outlet", "Images/outlet.jpg"));
         powerSources.add(new PowerSource("Laptop", "Images/laptop.png"));
-        powerSources.add(new PowerSource("Diesel Engine", "Images/diesel_engine.jpg"));
+        powerSources.add(new PowerSource("Diesel Engine", "Images/diesel_engine.png"));
     }
 
     public void createPowerSourceButtons () {
@@ -53,7 +53,7 @@ public class PowerSourcePanel extends Panel {
                     else {
                         selectedComponent = button.getComponent();
                         this.numSelections++;
-                        button.setBackground(new Color(77, 158, 73));
+                        button.setBackground(new Color(171, 203, 255));
                     }
                 }
         } catch (Exception ex) {

@@ -58,7 +58,7 @@ public class MainFrame extends Frame {
         receiverPanel = new ReceiverPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
         loadPanel = new LoadPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
-        selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
+        selectionPanel = new SelectionPanel(new FlowLayout(FlowLayout.CENTER, 50, 40));
 
         resultsPanel = new ResultsPanels(new FlowLayout(FlowLayout.CENTER, 5, 10));
         helperPanel = new HelperPanel(new FlowLayout(FlowLayout.CENTER, 40, 10));
